@@ -12,7 +12,7 @@ header {
     position: fixed;
     top: 0;
     min-height: 40px;
-    background-color: #282689;
+    background-color: #339cda;
     color: #fff;
     text-align: center;
     padding: 20px;
@@ -69,11 +69,11 @@ nav a:hover {
 }
 
 nav a:active {
-    color: #282689;
+    color: #339cda;
 }
 
 .nav_link-active {
-    color: #282689;
+    color: #339cda;
 }
 
 /* Banner Styles */
