@@ -150,6 +150,11 @@ main h3 {
     box-shadow: 0 0 10px rgba(0,0,0,0.1);
 }
 
+.container_header {
+    text-transform: uppercase;
+    font-size: 30px;
+}
+
 .contact {
     margin-top: 180px;
 }
