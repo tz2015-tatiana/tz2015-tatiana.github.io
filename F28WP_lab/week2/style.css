@@ -159,6 +159,20 @@ main h3 {
     margin-top: 180px;
 }
 
+.contact_additional {
+    font-size: 20px;
+}
+
+.contact_active-link {
+    text-decoration: none;
+    color: #339cda;
+    cursor: pointer;
+}
+
+.contact_active-link:hover {
+    color: #265f80;
+}
+
 .tasks {
     margin-top: 160px;
 }
@@ -226,7 +240,7 @@ footer a {
 }
 
 footer a:hover {
-    color: #b3b3b3;  /* Lighter color on hover */
+    color: #339cda;  /* Lighter color on hover */
 }
 
 footer p {
