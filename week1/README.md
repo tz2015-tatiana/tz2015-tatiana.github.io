@@ -12,4 +12,4 @@ The website template is provided by Professor Salma Smaeer Zalkha (https://githu
 
 ### Web link
 To see the week 1 final result, please click:
-http://tz2015-tatiana.github.io/F28WP_lab/week1
+http://tz2015-tatiana.github.io/week1
