@@ -1,3 +1,14 @@
+@keyframes slide-down {
+    0% {
+     max-height: 0px;
+     opacity: 0;
+    }
+    100% {
+     max-height: 480px;
+     opacity: 1;
+    }
+   }
+
 /* Reset Styles */
 body {
     margin: 0;
@@ -7,11 +18,15 @@ body {
     background-color: #e1f0f8;
 }
 
+* {
+    box-sizing: border-box;
+}
+
 /* Header Styles */
 header {
     width: 100%;
-    position: fixed;
-    top: 0;
+    /*position: fixed;
+    top: 0;*/
     min-height: 40px;
     background-color: #339cda;
     color: #fff;
@@ -24,7 +39,6 @@ header {
 }
 
 .banner {
-    margin-top: 160px;
     width: 100%;
     overflow: hidden;
 }
@@ -39,8 +53,8 @@ header {
 /* Navigation Styles */
 nav {
     width: 100%;
-    position: fixed;
-    top: 80px;
+    /*position: fixed;
+    top: 80px;*/
 }
 
 nav ul {
@@ -86,7 +100,6 @@ nav a:active {
     height: auto;
     width: 100%;
     overflow: hidden;
-    margin-top: 180px;
 }
 
 .centered-banner {
@@ -99,7 +112,6 @@ nav a:active {
 main {
     max-width: 800px;
     margin: 0 auto;
-    padding: 20px;
 }
 
 .services {
@@ -109,7 +121,7 @@ main {
 }
 
 .services_container {
-    margin-top: 205px;
+    position: relative;
 }
 
 main h3 {
@@ -155,10 +167,6 @@ main h3 {
     font-size: 30px;
 }
 
-.contact {
-    margin-top: 180px;
-}
-
 .contact_additional {
     font-size: 20px;
 }
@@ -176,6 +184,78 @@ main h3 {
 .tasks {
     margin-top: 160px;
 }
+
+/* Gallery page */
+.gallery {
+    padding: 2rem;
+    background-color: #fff;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);    
+}
+.slider_container {
+    position: relative;
+}
+
+/* Hide the images by default */
+.slider_element {
+    width: 100%;
+    height: 400px;
+}
+
+.slider_image {
+    vertical-align: middle;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;    
+}
+
+.slider_animation {
+    animation-duration: 2s;
+    animation-name: slide-down;
+    animation-timing-function: ease-out;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+/* Next & previous buttons */
+.prev,
+.next {
+    cursor: pointer;
+    position: absolute;
+    text-decoration: none;
+    top: 40%;
+    width: auto;
+    padding: 16px;
+    margin-top: -50px;
+    color: #fff;
+    font-weight: bold;
+    font-size: 20px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+/* Position the "next button" to the right */
+.next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+.prev:hover,
+.next:hover {
+    background-color: rgba(0, 0, 0, 0.3);
+    transition: all .3s ease-in-out;
+}
+
+.numbertext {
+    color: #f2f2f2;
+    font-size: 12px;
+    padding: 8px 12px;
+    position: absolute;
+    top: 0;
+}
+
+
+
 
 /* Media Queries for Responsiveness */
 @media (max-width: 800px) {
