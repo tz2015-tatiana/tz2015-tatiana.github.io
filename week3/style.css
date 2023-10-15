@@ -333,20 +333,7 @@ block-level display, font size, padding, full width */
 
 
 
-/* Media Queries for Responsiveness */
-@media (max-width: 800px) {
-    .service-column {
-        flex-basis: calc(50% - 20px);
-        max-width: calc(50% - 20px);
-    }
-}
 
-@media (max-width: 700px) {
-    .service-column {
-        flex-basis: 100%;
-        max-width: 100%;
-    }
-}
 
 /* Call to Action Styles */
 .cta-container {
@@ -389,6 +376,90 @@ block-level display, font size, padding, full width */
     font-weight: bold;
 }
 
+/*popup*/
+.popup-open {
+    padding: 20px 50px;
+    background-color: #339cda;
+    color: #ffffff;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    margin: 0;
+    margin-top: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.popup-open:hover {
+    background-color: #0056b3;
+    color: grey;
+}
+
+/*.popup-form {
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    opacity: 1;
+    position: fixed;
+    top: 0;
+    left: 40%;
+    z-index: 999;
+}
+*/
+.popup {
+    display: none;
+    position: fixed;
+    left: 50%;
+    top: 40%;
+    transform: translate(-50%, -50%);
+    z-index: 11;
+}
+
+.popup-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.7);
+    z-index: 10;
+}
+
+.popup-close {
+    cursor: pointer; 
+    position: absolute; 
+    top: 100px; 
+    right: 0;
+    z-index: 11;
+    transition: background-color 0.3s;
+}
+
+.popup-close::before,
+.popup-close::after {
+	content: ""; 
+    position: absolute; 
+    width: 24px; 
+    height: 4px; 
+    background: #fff;
+}
+
+.popup-close::before {
+    transform: rotate(45deg);
+}
+
+.popup-close::after{
+    transform: rotate(-45deg);
+}
+
+.popup-close:hover::before,
+.popup-close:hover::after {
+    background-color: grey;
+}
+
+
 /* Footer Styles */
 footer {
     background-color: #333;
@@ -419,3 +490,4 @@ footer a:hover {
 footer p {
     margin: 10px 0 0;
 }
+
