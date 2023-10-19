@@ -5,6 +5,11 @@ const password = document.getElementById("password");
 const confirm = document.getElementById("confirm");
 const submitBtn = form.querySelector(".form_button");
 
+const popupOpen = document.querySelector(".popup-open");
+const popup = document.querySelector(".popup");
+const popupOverlay = document.querySelector(".popup-overlay");
+const popupClose = popup.querySelector(".popup-close");
+
 const re = /\S+@\S+\.\S+/; /*regex for email validation*/
 
 let isNameValid = false;
@@ -13,6 +18,13 @@ let isPswdValid = false;
 let isConfirmValid = false;
 
 submitBtn.setAttribute("disabled", true);
+
+const clearForm = function() {
+  username.value = "";
+  email.value = "";
+  password.value = "";
+  confirm.value = "";
+}
 
 const setError = function(elem, message) {
   elem.parentElement.classList.add("error");
@@ -88,6 +100,11 @@ const checkDisabled = function() {
   }
 }
 
+const closePopup = function() {
+  popup.style.display = "none";
+  popupOverlay.style.display = "none";
+}
+
 username.addEventListener("focus", () => {
   submitBtn.setAttribute("disabled", true);
   username.nextElementSibling.innerHTML = "";
@@ -130,4 +147,19 @@ confirm.addEventListener("focusout", () => {
 
 form.addEventListener("submit", evt => {
   evt.preventDefault();
+  closePopup();
+});
+
+popupOpen.addEventListener("click", () => {
+  clearForm();
+  popup.style.display = "block";
+  popupOverlay.style.display = "block";
+});
+
+popupClose.addEventListener("click", closePopup);
+
+window.addEventListener("click", (evt) => {
+  if(evt.target.classList.contains("popup-overlay")) {
+    closePopup();
+  }
 });
