@@ -1,5 +1,5 @@
 const cityContainer = document.getElementById("city-info");
-const btn = document.querySelector(".button");
+const btn_fitch = document.querySelector(".fitch_button");
 
 const renderHTML = function(data) {
   let htmlString = "";
@@ -26,7 +26,7 @@ const renderHTML = function(data) {
     htmlString += '.</p>';
   }  
   cityContainer.insertAdjacentHTML('beforeend' , htmlString);
-  btn.classList.add("hide-me");
+  btn_fitch.classList.add("hide-me");
 }
 
 const getData = function() {
@@ -42,4 +42,4 @@ const getData = function() {
   ourRequest.send();
 }
 
-btn.addEventListener("click", getData);
+btn_fitch.addEventListener("click", getData);
