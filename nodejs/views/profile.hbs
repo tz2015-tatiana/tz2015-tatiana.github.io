@@ -42,7 +42,14 @@
             <h5 class="card-title">Hey {{user.name}} welcome back</h5>
             <p class="card-text">This is your profile page where you can add all
               the information about yourself</p>
-            <a href="#" class="btn btn-primary">Go Somewhere</a>
+            
+            <form action="/auth/profile/change-name" method="POST">
+              <div class="mb-3">
+                <label for="changeName" class="form-label">You can change your name here</label>
+                <input type="text" class="form-control" id="changeName" name="changeName">
+              </div>
+              <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
           </div>
           <div class="card-footer text-muted">Node MySQL - Project</div>
         </div>

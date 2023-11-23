@@ -2,10 +2,14 @@ const express = require('express');
 const mysql = require('mysql');
 const dotenv = require('dotenv');
 const path = require('path');
+const cookieParser = require('cookie-parser');
+
 dotenv.config({path: './.env'}); //protect data
 
 const port = 5000;
 const app = express();
+
+app.use(cookieParser());
 
 const db = mysql.createConnection({
   host: process.env.DATABASE_HOST,

@@ -2,6 +2,9 @@ const mysql = require('mysql');
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcryptjs');
 
+// Secret key for JWT
+const secretKey = 'your-secret-key';
+
 const db = mysql.createConnection({
   host: process.env.DATABASE_HOST,
   user: process.env.DATABASE_USER,
@@ -48,7 +51,7 @@ exports.register = (req, res) => {
 };
 
 exports.login = (req, res) => {
-  console.log(req.body);
+  console.log("login" + req.body);
 
   const {email, password} = req.body;
 
@@ -71,10 +74,79 @@ exports.login = (req, res) => {
           message: 'Invalid password'
         });
       } else {
-        res.render('profile', {
-          message: 'Login successful',
-          user: user
-        });
+        // Generate a JWT token
+        const token = jwt.sign({ userID: user.id, userName: user.name, email: user.email }, secretKey, { expiresIn: '1h' });
+
+        // Send the token to the client, store in cookies
+        res.cookie('token', token);
+
+        //res.render('profile', {
+          //message: 'Login successful. You can view your profile now',
+          //user: user
+        //});
+        res.redirect('/auth/profile');
       }
   })
 };
+
+exports.changeName = (req, res) => {
+  const { changeName } = req.body;
+  console.log(changeName);
+
+  // Access the token from cookies
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).send('Unauthorized - Missing token');
+  }
+
+  try {
+    // Verify the token
+    const decoded = jwt.verify(token, secretKey);
+
+    // Assuming the decoded information contains the user ID
+    const userID = decoded.userID;
+
+    // Update the user's name in the database
+    db.query('UPDATE users SET name = ? WHERE id = ?', [changeName, userID], (err, results) => {
+      if (err) {
+        console.error(err);
+        return res.status(500).send('Internal Server Error');
+      }
+
+      console.log(results);
+
+      // The update was successful, redirect to a profile page with updated name
+      res.render('profile', {
+        message: 'Name changed successfully',
+        user: { name: changeName }
+      });
+    });
+  } catch (error) {
+    // Handle token verification errors
+    console.error(error);
+    res.status(401).send('Unauthorized - Invalid token');
+  }
+}
+
+exports.profile = (req, res) => {
+  console.log("profile" + req.body);
+  const token = req.cookies.token;
+
+  if (!token) {
+    return res.status(401).send('Unauthorized - Missing token');
+  }
+
+  try {
+    const decoded = jwt.verify(token, secretKey);
+    const userName = decoded.userName;
+
+    res.render('profile', {
+      user: { name: userName }
+    })
+  } catch (error) {
+    // Handle token verification errors
+    console.error(error);
+    res.status(401).send('Unauthorized - Invalid token');
+  }
+}
